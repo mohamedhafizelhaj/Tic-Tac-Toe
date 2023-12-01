@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  player-1:
+    build:
+      context: ./player-1
+    networks:
+      my-network:
+    ports:
+      - "8000:80"
+    volumes:
+      - ./player-1/laravel-app:/var/www/html
+
+  player-2:
+    build:
+      context: ./player-2
+    networks:
+      my-network:
+    ports:
+      - "8001:80"
+    volumes:
+      - ./player-2/laravel-app:/var/www/html
+
+  websockets-server:
+    build:
+      context: ./websockets-server
+    networks:
+      my-network:
+        ipv4_address: 172.31.0.4
+    volumes:
+      - ./websockets-server/laravel-app:/var/www/html
+
+networks:
+  my-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.31.0.0/16

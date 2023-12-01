@@ -1,0 +1,1 @@
+A Dockerized Tic-Tac-Toe game, utilizing WebSocket for communication between players.
