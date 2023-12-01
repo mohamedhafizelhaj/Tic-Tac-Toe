@@ -30,4 +30,6 @@ RUN a2enmod headers rewrite proxy proxy_http
 COPY supervisor/websockets.conf /etc/supervisor/conf.d
 COPY supervisor/apache2.conf /etc/supervisor/conf.d
 
+EXPOSE 80 8000
+
 CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]

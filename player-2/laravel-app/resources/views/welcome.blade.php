@@ -89,15 +89,20 @@
 
     </table>
 
+    <div id="host_ip" style="display: none">{{ $ip }}</div>
+
     <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 
     <script>
+        let host_ip = document.getElementById('host_ip').innerHTML
+        
         const pusher = new Pusher('{{ config('broadcasting.connections.pusher.key') }}', {
-            wsHost: "172.31.0.4",
+            wsHost: host_ip,
+            wsPort: 8002,
             enabledTransports: ['ws'],
             forceTLS: false,
             enableStats: false,
-            authEndpoint: "http://172.31.0.4:8000/api/auth",
+            authEndpoint: `http://${host_ip}:8003/api/auth`,
             auth: {
                 params: { playerId: 2 }
             }

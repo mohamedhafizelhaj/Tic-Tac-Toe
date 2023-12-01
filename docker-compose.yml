@@ -30,7 +30,9 @@ services:
       context: ./websockets-server
     networks:
       my-network:
-        ipv4_address: 172.31.0.4
+    ports:
+      - "8002:80"
+      - "8003:8000"
     volumes:
       - ./websockets-server/laravel-app:/var/www/html
       - ./websockets-server/apache:/etc/apache2/sites-available
@@ -39,6 +41,3 @@ services:
 networks:
   my-network:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.31.0.0/16
